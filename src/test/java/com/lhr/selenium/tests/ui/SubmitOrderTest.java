@@ -15,34 +15,40 @@ public class SubmitOrderTest extends BaseTest {
     @Test
     public void submitOrder() throws InterruptedException {
 
-            landingPage.loginAction("MarryIND", "Test@123");
+        landingPage.loginAction("MarryIND", "Test@123");
         Thread.sleep(3000);
 
         ManagerOfficerPage managerOfficerPage = new ManagerOfficerPage(driver);
         managerOfficerPage.goTo();
-        List<WebElement> officerList = managerOfficerPage.getOfficerList();
-        WebElement officer = managerOfficerPage.getOfficerByName("userMarrymodh1234");
         managerOfficerPage.clickonOfficer();
 
         AddMangerOfiicer addMangerOfiicer = new AddMangerOfiicer(driver);
-        addMangerOfiicer.addOfficer("MarryIND1234","MarryINDlast","1234567890","userMarrymodh1234","Test@1234","Test@1234");
-        Thread.sleep(3000);
+        addMangerOfiicer.addOfficer("MarryINDnew","MarryINDlast","1234567890","userMarrymodhnew","Test@1234","Test@1234");
+       // addMangerOfiicer.scrollToElement(addMangerOfiicer.getcancelBtn());
+        addMangerOfiicer.clickPayrollTab("America/Boise");
+        addMangerOfiicer.enterMaxHours("20","30");
         addMangerOfiicer.scrollToElement(addMangerOfiicer.getcancelBtn());
+
         addMangerOfiicer.clickSubmitBtn();
 
         //Edit officer
+        List<WebElement> officerList = managerOfficerPage.getOfficerList();
+        WebElement officer = managerOfficerPage.getOfficerByName("userMarrymodhnew");
         managerOfficerPage.clickonEditOfficerBtn();
         EditMangerOfficer editMangerOfficer = new EditMangerOfficer(driver);
         editMangerOfficer.Editoffcer("MarryINd","MarryINDlastUpdate","123456789000");
-        Thread.sleep(3000);
-        addMangerOfiicer.scrollToElement(addMangerOfiicer.getcancelBtn());
-        addMangerOfiicer.clickSubmitBtn();
+        editMangerOfficer.EditclickPayrollTab("America/Chicago");
+        editMangerOfficer.EditenterMaxHours("10","20");
+        editMangerOfficer.scrollToElement(editMangerOfficer.getcancelBtn());
+
+        editMangerOfficer.editclickSubmitBtn();
 
         //Delete
         managerOfficerPage.clickonDeleteOfficerBtn(false); // Cancel deletion
 
         managerOfficerPage.clickonResetPasswordBtn("Test@123","Test@1234");
         managerOfficerPage.newpassowrdsubmitclick();
+
 
     }
 }

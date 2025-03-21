@@ -88,7 +88,7 @@ public class AbstractComponent {
             JavascriptExecutor js = (JavascriptExecutor) driver;
 
             // Scroll the element into view, centering it in the viewport
-            js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", element);
+            js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'nearest'});", element);
 
             // Adjust for headers or footers if applicable
             js.executeScript("window.scrollBy(0, -50);"); // Offset by 50px

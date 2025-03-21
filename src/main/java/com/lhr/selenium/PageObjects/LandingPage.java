@@ -26,6 +26,12 @@ public class LandingPage extends AbstractComponent {
     @FindBy(xpath = "//div[@class='p-toast-detail ng-tns-c21-1']")
     WebElement errorMessageEle;
 
+    @FindBy(xpath = "//u[normalize-space()='Forgot Password']")
+    WebElement forgotlink;
+
+    @FindBy(xpath = "//h3[normalize-space()='Forgot Password']")
+    WebElement Forgottext;
+
 
     public LandingPage(WebDriver driver){
         super(driver);
@@ -54,5 +60,10 @@ public class LandingPage extends AbstractComponent {
     public String getLoginErrorMessage(){
         waitForWebElementToVisible(errorMessageEle);
         return errorMessageEle.getText();
+    }
+
+    public String forgotbutton(){
+        click(forgotlink);
+        return Forgottext.getText();
     }
 }
